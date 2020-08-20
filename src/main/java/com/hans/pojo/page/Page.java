@@ -1,4 +1,4 @@
-package com.hans.pojo;
+package com.hans.pojo.page;
 
 import com.hans.pojo.page.UserRecord;
 
@@ -19,7 +19,7 @@ public class Page {
     List<UserRecord> userRecords;//数据记录
     UserRecord supremum;//最大记录，上界
     Object freeSpace;
-    ArrayList<Slot> pageDirectory;//数组
+    ArrayList<Slot> pageDirectory;//数组,容量:[4,8]
     Object fileTrailer;//页尾
 
     /**
@@ -34,7 +34,7 @@ public class Page {
         UserRecord beforeRecord = userRecords.get(pageDirectory.indexOf(maxRecordInSlot) - 1);
 
 
-        // KLH: 2020/8/19 柑橘n_owned槽内记录条数，遍历槽内单链表
+        // KLH: 2020/8/19 根据n_owned槽内记录条数，遍历槽内单链表
         for (int i = 0; i < maxRecordInSlot.recordHeader.n_owned; i++) {
             UserRecord record = UserRecord.findByNextRecord(beforeRecord.recordHeader.next_record);
             if (record.value.get(0).equals(index)) {

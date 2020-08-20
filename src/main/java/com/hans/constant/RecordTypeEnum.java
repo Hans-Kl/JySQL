@@ -8,10 +8,10 @@ package com.hans.constant;
  * @version 1.0
  */
 public enum RecordTypeEnum {
-    USER(0),
-    B(1),
-    INFIMUM(2),
-    SUPREMUM(3);
+    USER_RECORD(0),//普通的用户记录
+    DIRECTORY(1),//目录项记录
+    INFIMUM(2),//最小记录
+    SUPREMUM(3);//最大记录
 
     RecordTypeEnum(int i) {
     }
