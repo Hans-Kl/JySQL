@@ -19,7 +19,7 @@ public class Page {
     List<UserRecord> userRecords;//数据记录
     UserRecord supremum;//最大记录，上界
     Object freeSpace;
-    ArrayList<Slot> pageDirectory;//数组,容量:[4,8]
+    ArrayList<Slot> pageDirectory;//数组,每个slot容量:[4,8]
     Object fileTrailer;//页尾
 
     /**
@@ -28,7 +28,7 @@ public class Page {
      * @param index
      * @return
      */
-    public UserRecord selectByIndex(Long index) {
+    public UserRecord selectByIndexInPage(Long index) {
         Slot slot = binarySearchInPageDirectory(index);
         UserRecord maxRecordInSlot = UserRecord.findByNextRecord(slot.next_record);
         UserRecord beforeRecord = userRecords.get(pageDirectory.indexOf(maxRecordInSlot) - 1);
